@@ -11,7 +11,7 @@
  Target Server Version : 50726
  File Encoding         : 65001
 
- Date: 09/12/2023 19:30:31
+ Date: 26/12/2023 16:33:45
 */
 
 SET NAMES utf8mb4;
@@ -26,11 +26,7 @@ CREATE TABLE `administrators`  (
   `AdminUserName` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `AdminPassword` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`AdminID`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_unicode_ci ROW_FORMAT = Dynamic;
-
--- ----------------------------
--- Records of administrators
--- ----------------------------
+) ENGINE = MyISAM AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_unicode_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for dishes
@@ -41,29 +37,21 @@ CREATE TABLE `dishes`  (
   `DishName` varchar(100) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL,
   `SellingPrice` decimal(10, 2) NULL DEFAULT NULL,
   PRIMARY KEY (`DishID`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_unicode_ci ROW_FORMAT = Dynamic;
-
--- ----------------------------
--- Records of dishes
--- ----------------------------
+) ENGINE = MyISAM AUTO_INCREMENT = 1112 CHARACTER SET = utf8 COLLATE = utf8_unicode_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for dishinventory
 -- ----------------------------
 DROP TABLE IF EXISTS `dishinventory`;
 CREATE TABLE `dishinventory`  (
-  `InventoryID` int(11) NOT NULL,
+  `UserID` int(11) NOT NULL,
   `DishID` int(11) NOT NULL,
   `CurrentStock` int(11) NULL DEFAULT NULL,
   `PurchasePrice` decimal(10, 2) NULL DEFAULT NULL,
   `SellingPrice` decimal(10, 2) NULL DEFAULT NULL,
-  PRIMARY KEY (`InventoryID`, `DishID`) USING BTREE,
+  PRIMARY KEY (`UserID`, `DishID`) USING BTREE,
   INDEX `DishID`(`DishID`) USING BTREE
 ) ENGINE = MyISAM CHARACTER SET = utf8 COLLATE = utf8_unicode_ci ROW_FORMAT = Fixed;
-
--- ----------------------------
--- Records of dishinventory
--- ----------------------------
 
 -- ----------------------------
 -- Table structure for orders
@@ -71,7 +59,7 @@ CREATE TABLE `dishinventory`  (
 DROP TABLE IF EXISTS `orders`;
 CREATE TABLE `orders`  (
   `OrderID` int(11) NOT NULL AUTO_INCREMENT,
-  `InventoryID` int(11) NULL DEFAULT NULL,
+  `UserID` char(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL,
   `OrderDate` date NULL DEFAULT NULL,
   `DishName` varchar(100) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL,
   `Quantity` int(11) NULL DEFAULT NULL,
@@ -79,12 +67,8 @@ CREATE TABLE `orders`  (
   `TotalAmount` decimal(10, 2) NULL DEFAULT NULL,
   `OrderStatus` int(11) NULL DEFAULT NULL,
   PRIMARY KEY (`OrderID`) USING BTREE,
-  INDEX `InventoryID`(`InventoryID`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_unicode_ci ROW_FORMAT = Dynamic;
-
--- ----------------------------
--- Records of orders
--- ----------------------------
+  INDEX `UserID`(`UserID`) USING BTREE
+) ENGINE = MyISAM AUTO_INCREMENT = 1233334 CHARACTER SET = utf8 COLLATE = utf8_unicode_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for suppliers
@@ -98,11 +82,7 @@ CREATE TABLE `suppliers`  (
   `ContactPhoneNumber` varchar(20) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL,
   `PAddress` varchar(100) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL,
   PRIMARY KEY (`SupplierID`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_unicode_ci ROW_FORMAT = Dynamic;
-
--- ----------------------------
--- Records of suppliers
--- ----------------------------
+) ENGINE = MyISAM AUTO_INCREMENT = 123133 CHARACTER SET = utf8 COLLATE = utf8_unicode_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for users
@@ -114,9 +94,5 @@ CREATE TABLE `users`  (
   `Address` varchar(100) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL,
   `PhoneNumber` varchar(20) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL
 ) ENGINE = MyISAM CHARACTER SET = utf8 COLLATE = utf8_unicode_ci ROW_FORMAT = Dynamic;
-
--- ----------------------------
--- Records of users
--- ----------------------------
 
 SET FOREIGN_KEY_CHECKS = 1;

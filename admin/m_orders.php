@@ -103,6 +103,7 @@
                     <td>".$row["TotalAmount"]."</td>
                     <td>".$row["OrderStatus"]."</td>
                     <td><a href='./orders/delete_order.php?id=".$row["OrderID"]."'>删除</a></td>
+                    <td><form method='post' action='./orders/change_order_status.php'><input type='hidden' name='order_id' value='" . $row["OrderID"] . "'><input type='submit' value='出货'></form></td>
                     </tr>";
                 }
                 echo "</table>";
