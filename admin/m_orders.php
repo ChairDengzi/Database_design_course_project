@@ -11,6 +11,8 @@
             height: 100vh; /* 将body的高度设置为100vh */
             background-color: #f2f2f2;
         }
+
+
     </style>
 </head>
 <body>
@@ -90,10 +92,10 @@
                 <th>OrderStatus</th>
                 <th>Action</th>
                 </tr>";
-
-                // 输出数据
-                while($row = $result->fetch_assoc()) {
-                    echo "<tr>
+            // 输出数据
+            while($row = $result->fetch_assoc()) {
+                echo 
+                "<tr>
                     <td>".$row["OrderID"]."</td>
                     <td>".$row["UserID"]."</td>
                     <td>".$row["OrderDate"]."</td>
@@ -102,10 +104,18 @@
                     <td>".$row["UnitPrice"]."</td>
                     <td>".$row["TotalAmount"]."</td>
                     <td>".$row["OrderStatus"]."</td>
-                    <td><a href='./orders/delete_order.php?id=".$row["OrderID"]."'>删除</a></td>
-                    <td><form method='post' action='./orders/change_order_status.php'><input type='hidden' name='order_id' value='" . $row["OrderID"] . "'><input type='submit' value='出货'></form></td>
-                    </tr>";
-                }
+                    <td>
+                        <button onclick='window.location.href=\"./orders/delete_order.php?id=".$row["OrderID"]."\"' style='margin-bottom: 10px;'>删除</button>
+                        <form method=\"post\" action=\"./orders/change_order_status.php\">
+                            <input type=\"hidden\" name=\"order_id\" value=\"".$row["OrderID"]."\">
+                            <button type=\"submit\">出货</button>
+                        </form>
+                    </td>
+                </tr>";
+            
+            }
+
+
                 echo "</table>";
             } else {
                 echo "0 结果";

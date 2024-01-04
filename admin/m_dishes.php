@@ -79,8 +79,16 @@
 
                 if ($result->num_rows > 0) {
                     while ($row = $result->fetch_assoc()) {
-                        echo "<tr><td>" . $row["DishID"] . "</td><td>" . $row["DishName"] . "</td><td>" . $row["SellingPrice"] . "</td>";
-                        echo "<td><form method='post' action='./dishes/delete_dish.php'><input type='hidden' name='delete_id' value='" . $row["DishID"] . "'><input type='submit' value='删除'></form></td></tr>";
+                        echo 
+                        "<tr>
+                            <td>" . $row["DishID"] . "</td>
+                            <td>" . $row["DishName"] . "</td>
+                            <td>" . $row["SellingPrice"] . "</td>";
+                            echo 
+                            "<td><form method='post' action='./dishes/delete_dish.php'>
+                                <input type='hidden' name='delete_id' value='" . $row["DishID"] . "'>
+                                <input type='submit' value='删除'></form></td>
+                        </tr>";
                     }
                 } else {
                     echo "<tr><td colspan='4'>未找到菜品</td></tr>";

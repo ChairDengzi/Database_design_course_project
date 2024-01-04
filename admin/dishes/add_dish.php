@@ -15,7 +15,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     // 准备插入数据的SQL语句
-    $sql = "INSERT INTO Dishes (DishID, DishName, SellingPrice) VALUES ('$dish_id', '$dish_name', '$selling_price')";
+    $sql = "INSERT INTO Dishes (DishID, DishName, SellingPrice) 
+            VALUES ('$dish_id', '$dish_name', '$selling_price')";
 
     // 执行SQL语句
     if ($conn->query($sql) === TRUE) {
